@@ -7,16 +7,18 @@ export default function KPI({ title, value }: Props) {
   return (
     <div
       style={{
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        padding: '15px',
-        width: '150px',
-        backgroundColor: '#f9f9f9',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+        width: "160px",
+        padding: "18px",
+        borderRadius: "16px",
+        background: "rgba(255, 255, 255, 0.10)",
+        border: "1px solid rgba(255, 255, 255, 0.20)",
+        boxShadow: "0 8px 30px rgba(0, 0, 0, 0.25)",
+        backdropFilter: "blur(12px)",
+        color: "#ffffff",
       }}
     >
-      <p style={{ margin: 0, color: '#555' }}>{title}</p>
-      <h2 style={{ margin: '10px 0 0 0' }}>{value}</h2>
+      <p style={{ margin: 0, color: "rgba(255,255,255,0.75)" }}>{title}</p>
+      <h2 style={{ margin: "12px 0 0 0", fontSize: "30px" }}>{value}</h2>
     </div>
   );
 }
