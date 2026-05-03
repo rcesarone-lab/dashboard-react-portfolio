@@ -15,13 +15,13 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={isAuth ? <Dashboard /> : <Navigate to="/login" />}
+        element={isAuth ? <Dashboard /> : <Navigate to="/login" replace />}
       />
 
-      <Route
-        path="/login"
-        element={!isAuth ? <Login /> : <Navigate to="/" />}
-      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
