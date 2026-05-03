@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { getSession } from "./services/authService";
 
 function App() {
