@@ -1,25 +1,23 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import { isAuthenticated } from "./services/authService";
 import Register from "./pages/Register";
+import { isAuthenticated } from "./services/authService";
 
 export default function App() {
-  const [isAuth, setIsAuth] = useState(
-    localStorage.getItem("auth") === "true"
-  );
-
   return (
     <Routes>
-      <Route
-        path="/"element={isAuth ? <Dashboard /> : <Navigate to="/login" replace />}
-      />
-
-      <Route path="/login"element={<Login onLogin={() => setIsAuth(true)} />}
-      />
-
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+
+      <Route
+        path="/"
+        element={
+          isAuthenticated() ? <Dashboard /> : <Navigate to="/login" replace />
+        }
+      />
+
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

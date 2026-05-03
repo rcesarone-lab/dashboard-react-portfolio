@@ -50,11 +50,7 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <LoadingScreen
-        theme={theme}
-        background={colors.bg}
-        color={colors.text}
-      />
+      <LoadingScreen theme={theme} />
     );
   }
 

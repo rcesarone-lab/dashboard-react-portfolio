@@ -1,38 +1,23 @@
-import type { Sale, Theme } from "../../types/sales";
-
 type Props = {
-  total: number;
-  average: number;
-  bestMonth: Sale | null;
-  worstMonth: Sale | null;
-  theme: Theme;
+  theme: string;
 };
 
-export default function AnalysisTab({
-  total,
-  average,
-  bestMonth,
-  worstMonth,
-  theme,
-}: Props) {
+export default function LoadingScreen({ theme }: Props) {
   const isDark = theme === "dark";
 
   return (
     <div
       style={{
-        padding: "24px",
-        borderRadius: "16px",
-        background: isDark ? "rgba(255,255,255,0.08)" : "#ffffff",
-        border: isDark
-          ? "1px solid rgba(255,255,255,0.18)"
-          : "1px solid #e5e7eb",
+        minHeight: "100vh",
+        background: isDark ? "#0f172a" : "#f8fafc",
+        color: isDark ? "#ffffff" : "#0f172a",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "Arial",
       }}
     >
-      <h2>Análisis</h2>
-      <p>Total anual: {total}</p>
-      <p>Promedio mensual: {average}</p>
-      <p>Mejor mes: {bestMonth ? bestMonth.mes : "Sin datos"}</p>
-      <p>Peor mes: {worstMonth ? worstMonth.mes : "Sin datos"}</p>
+      Cargando dashboard...
     </div>
   );
 }

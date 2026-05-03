@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type TabKey = "ventas" | "analisis" | "configuracion";
+export type TabKey = "ventas" | "analisis" | "config";
 
 const TAB_STORAGE_KEY = "active-tab";
 
@@ -13,7 +13,7 @@ export function useTabs() {
     if (
       savedTab === "ventas" ||
       savedTab === "analisis" ||
-      savedTab === "configuracion"
+      savedTab === "config"
     ) {
       setActiveTab(savedTab);
     }

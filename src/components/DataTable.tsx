@@ -1,47 +1,61 @@
-type Props = {
-  data: {
-    mes: string;
-    ventas: number;
-  }[];
-  onUpdate: (index: number, value: number) => void;
+type Sale = {
+  id: number;
+  mes: string;
+  ventas: number;
 };
 
-export default function DataTable({ data, onUpdate }: Props) {
+type Props = {
+  data?: Sale[];
+  theme: string;
+  onUpdateVenta: (id: number, ventas: number) => void;
+};
+
+export default function DataTable({
+  data = [],
+  theme,
+  onUpdateVenta,
+}: Props) {
+  const isDark = theme === "dark";
+
   return (
     <div
       style={{
         padding: "20px",
         borderRadius: "16px",
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.12)",
+        background: isDark ? "rgba(255,255,255,0.06)" : "#ffffff",
+        border: isDark
+          ? "1px solid rgba(255,255,255,0.12)"
+          : "1px solid #e5e7eb",
       }}
     >
-      {/* HEADER */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: "grid",
+          gridTemplateColumns: "1fr 140px",
+          gap: "16px",
           paddingBottom: "10px",
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
-          marginBottom: "10px",
-          fontWeight: 600,
-          opacity: 0.8,
+          borderBottom: isDark
+            ? "1px solid rgba(255,255,255,0.1)"
+            : "1px solid #e5e7eb",
+          fontWeight: 700,
         }}
       >
         <span>Mes</span>
-        <span>Ventas</span>
+        <span style={{ textAlign: "right" }}>Ventas</span>
       </div>
 
-      {/* FILAS */}
-      {data.map((item, index) => (
+      {data.map((item) => (
         <div
-          key={index}
+          key={item.id}
           style={{
-            display: "flex",
-            justifyContent: "space-between",
+            display: "grid",
+            gridTemplateColumns: "1fr 140px",
+            gap: "16px",
             alignItems: "center",
-            padding: "10px 0",
-            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            padding: "12px 0",
+            borderBottom: isDark
+              ? "1px solid rgba(255,255,255,0.05)"
+              : "1px solid #e5e7eb",
           }}
         >
           <span>{item.mes}</span>
@@ -49,17 +63,18 @@ export default function DataTable({ data, onUpdate }: Props) {
           <input
             type="number"
             value={item.ventas}
-            onChange={(e) =>
-              onUpdate(index, Number(e.target.value))
-            }
+            onChange={(e) => onUpdateVenta(item.id, Number(e.target.value))}
             style={{
-              width: "90px",
-              textAlign: "center",
-              padding: "6px",
+              width: "100%",
+              padding: "8px",
               borderRadius: "10px",
-              border: "1px solid rgba(255,255,255,0.15)",
-              background: "rgba(255,255,255,0.08)",
-              color: "#fff",
+              border: isDark
+                ? "1px solid rgba(255,255,255,0.15)"
+                : "1px solid #cbd5e1",
+              background: isDark ? "rgba(255,255,255,0.08)" : "#f8fafc",
+              color: isDark ? "#ffffff" : "#0f172a",
+              textAlign: "right",
+              boxSizing: "border-box",
             }}
           />
         </div>
