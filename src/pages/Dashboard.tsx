@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
 import Tabs from "../components/Tabs";
@@ -13,9 +12,7 @@ import { useToast } from "../hooks/useToast";
 import { getSession, logout } from "../services/authService";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
-  const { toast, showToast, closeToast } = useToast();
+  const { toast, closeToast } = useToast();
   const { activeTab, changeTab } = useTabs();
 
   const { theme, toggleTheme } = useTheme();
@@ -41,11 +38,7 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     logout();
-    showToast("Sesión cerrada", "info");
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 700);
+    window.location.href = "/login";
   };
 
   if (loading) {

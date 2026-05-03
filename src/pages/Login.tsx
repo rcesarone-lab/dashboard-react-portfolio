@@ -20,8 +20,7 @@ export default function Login() {
     }
 
     setError("");
-    navigate("/");
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (
