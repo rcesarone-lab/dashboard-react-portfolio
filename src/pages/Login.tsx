@@ -1,96 +1,145 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+import { login } from "../services/authService";
 
-type Props = {
-  onLogin: () => void;
-};
-
-export default function Login({ onLogin }: Props) {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+export default function Login() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (user === "admin" && password === "1234") {
-      localStorage.setItem("auth", "true");
-      onLogin();
-      navigate("/", { replace: true });
+  const [email, setEmail] = useState("rcesarone@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [error, setError] = useState("");
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const loggedUser = login(email, password);
+
+    if (!loggedUser) {
+      setError("Credenciales inválidas");
       return;
     }
 
-    alert("Credenciales incorrectas");
+    setError("");
+    navigate("/");
   };
 
   return (
     <div
       style={{
         minHeight: "100vh",
+        background: "#0f172a",
+        color: "#ffffff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background:
-          "radial-gradient(circle at top left, #243b55, #141e30 35%, #050505 100%)",
         fontFamily: "Arial",
+        padding: "20px",
       }}
     >
-      <div
+      <form
+        onSubmit={handleLogin}
         style={{
-          padding: "40px",
-          borderRadius: "16px",
+          width: "100%",
+          maxWidth: "380px",
+          padding: "32px",
+          borderRadius: "20px",
           background: "rgba(255,255,255,0.08)",
-          border: "1px solid rgba(255,255,255,0.2)",
-          backdropFilter: "blur(12px)",
-          width: "300px",
-          color: "#fff",
+          border: "1px solid rgba(255,255,255,0.18)",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
         }}
       >
-        <h2 style={{ marginBottom: "20px" }}>Login</h2>
+        <h1 style={{ marginTop: 0 }}>Iniciar sesión</h1>
 
+        <p style={{ color: "rgba(255,255,255,0.65)" }}>
+          Acceso al dashboard de ventas
+        </p>
+
+        <label>Email</label>
         <input
-          placeholder="Usuario"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           style={{
             width: "100%",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "8px",
-            border: "none",
+            marginTop: "8px",
+            marginBottom: "16px",
+            padding: "12px",
+            borderRadius: "12px",
+            border: "1px solid rgba(255,255,255,0.2)",
+            background: "rgba(255,255,255,0.08)",
+            color: "#ffffff",
+            boxSizing: "border-box",
           }}
         />
 
+        <label>Contraseña</label>
         <input
           type="password"
-          placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={{
             width: "100%",
-            padding: "10px",
-            marginBottom: "20px",
-            borderRadius: "8px",
-            border: "none",
+            marginTop: "8px",
+            padding: "12px",
+            borderRadius: "12px",
+            border: "1px solid rgba(255,255,255,0.2)",
+            background: "rgba(255,255,255,0.08)",
+            color: "#ffffff",
+            boxSizing: "border-box",
           }}
         />
 
+        {error && (
+          <p style={{ color: "#f87171", marginTop: "14px" }}>
+            {error}
+          </p>
+        )}
+
         <button
-          type="button"
-          onClick={handleLogin}
+          type="submit"
           style={{
             width: "100%",
-            padding: "10px",
-            borderRadius: "8px",
+            marginTop: "22px",
+            padding: "12px",
+            borderRadius: "12px",
             border: "none",
             background: "#8b5cf6",
-            color: "#fff",
+            color: "#ffffff",
+            fontWeight: 700,
             cursor: "pointer",
           }}
         >
-          Ingresar
+          Entrar
         </button>
-      </div>
-      <Footer />
+
+        <button
+          type="button"
+          onClick={() => navigate("/register")}
+          style={{
+            width: "100%",
+            marginTop: "12px",
+            padding: "12px",
+            borderRadius: "12px",
+            border: "1px solid rgba(255,255,255,0.2)",
+            background: "transparent",
+            color: "#ffffff",
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          Crear cuenta
+        </button>
+
+        <p
+          style={{
+            marginTop: "18px",
+            fontSize: "13px",
+            color: "rgba(255,255,255,0.6)",
+          }}
+        >
+          Demo: rcesarone@gmail.com / 123456
+        </p>
+      </form>
     </div>
   );
 }

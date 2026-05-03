@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import { isAuthenticated } from "./services/authService";
+import Register from "./pages/Register";
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(
@@ -11,14 +13,13 @@ export default function App() {
   return (
     <Routes>
       <Route
-        path="/"
-        element={isAuth ? <Dashboard /> : <Navigate to="/login" replace />}
+        path="/"element={isAuth ? <Dashboard /> : <Navigate to="/login" replace />}
       />
 
-      <Route
-        path="/login"
-        element={<Login onLogin={() => setIsAuth(true)} />}
+      <Route path="/login"element={<Login onLogin={() => setIsAuth(true)} />}
       />
+
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }
