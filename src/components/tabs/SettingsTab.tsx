@@ -50,16 +50,19 @@ export default function SettingsTab({ theme, onToggleTheme }: Props) {
 
           <div style={cardStyle}>
             <h3 style={{ marginTop: 0 }}>Perfil</h3>
-            <p><strong>Nombre:</strong> Cesar Ramirez</p>
 
             <p>
-              <strong>Rol:</strong> Desarrollador Fullstack COBOL / CICS / DB2 <br />
-              En transición hacia Frontend Developer (React)
+              <strong>Nombre:</strong> Cesar Ramirez
             </p>
 
             <p>
-              Experiencia en modernización de sistemas legacy, integración con APIs
-              y desarrollo de interfaces modernas con React y TypeScript.
+              <strong>Perfil:</strong> Consultor de Sistemas con experiencia en COBOL,
+              CICS, DB2 y modernización de aplicaciones legacy.
+            </p>
+
+            <p>
+              Actualmente fortaleciendo habilidades frontend con React, TypeScript y
+              arquitectura moderna para evolucionar hacia un perfil fullstack.
             </p>
           </div>
 
@@ -103,13 +106,16 @@ export default function SettingsTab({ theme, onToggleTheme }: Props) {
           <div style={cardStyle}>
             <h3 style={{ marginTop: 0 }}>Estado del proyecto</h3>
 
-            <ul>
+            <ul style={{ paddingLeft: "18px", lineHeight: 1.8 }}>
               <li>Deploy activo en Vercel</li>
-              <li>Autenticación local con sesiones</li>
-              <li>Persistencia por usuario (localStorage)</li>
-              <li>Dashboard modular con React + TypeScript</li>
-              <li>Visualización de datos con Recharts</li>
-              <li>Base lista para integración backend</li>
+              <li>Login y registro básico implementados</li>
+              <li>Sesión persistente con localStorage</li>
+              <li>Ventas editables desde tabla</li>
+              <li>Gráfico dinámico con Recharts</li>
+              <li>Exportación de datos en JSON y CSV</li>
+              <li>Tema oscuro/claro disponible</li>
+              <li>Estructura modular con componentes, hooks y servicios</li>
+              <li>Base preparada para integración con backend real</li>
             </ul>
           </div>
 
@@ -142,13 +148,17 @@ export default function SettingsTab({ theme, onToggleTheme }: Props) {
           <div style={cardStyle}>
             <h3 style={{ marginTop: 0 }}>Próximas mejoras</h3>
 
-            <ul>
-              <li>Autenticación real (Firebase / Auth0)</li>
-              <li>Persistencia en backend (Node + DB)</li>
-              <li>Multiusuario con datos independientes</li>
-              <li>Edición avanzada de ventas (CRUD completo)</li>
-              <li>Dashboard con gráficos múltiples</li>
-              <li>Exportación avanzada (PDF / Excel)</li>
+            <ul style={{ paddingLeft: "18px", lineHeight: 1.8 }}>
+              <li>Persistencia real en backend con base de datos</li>
+              <li>Autenticación productiva con Firebase/Auth0</li>
+              <li>Separación completa de datos por usuario</li>
+              <li>Edición avanzada de ventas con CRUD completo</li>
+              <li>Filtros por mes, trimestre y año</li>
+              <li>Exportación avanzada a Excel y PDF</li>
+              <li>Dashboard con más gráficos comparativos</li>
+              <li>Panel administrativo para gestión de usuarios</li>
+              <li>Mejoras responsive para mobile/tablet</li>
+              <li>Migración gradual a arquitectura fullstack</li>
             </ul>
           </div>
         </div>
